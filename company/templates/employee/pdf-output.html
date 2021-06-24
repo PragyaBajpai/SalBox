@@ -1,0 +1,47 @@
+{% extends "index.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<html>
+    <head>
+        <title>{% for employee in employeess %}
+           
+            { employee.CompanyInfo }}
+               
+            {% endfor %}</title>
+            <style>
+                @page{
+                    size: A4;
+                    margin: 2.5cm 1.5cm 3.5cm 1.5cm;
+                }
+            </style>
+ </head>
+ <body>
+     <h3>
+        {% for employee in employeess %}
+           
+        { employee.CompanyInfo }}
+           
+        {% endfor %}
+     </h3>
+     <table>
+        <thead>
+            <!-- <th>Company</th> -->
+            <th>Name</th>
+            <th>Created On</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            {% for employee in employeess %}
+            <tr>
+                <!-- <td>{{ employee.CompanyInfo }}</td> -->
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.created|date:"d M Y" }}</td>
+                <td><button class="btn btn-secondary" onclick="window.location.replace('/employee/{{employee.id}}?companyID={{employee.CompanyInfo.id}}')" >Edit</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+ </body>
+    
+</html>
